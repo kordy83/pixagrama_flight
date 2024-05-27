@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_edit_invoice" model="res.groups">
+            <field name="name">Edit Invoice</field>
+        </record>
+        <record id="group_flight_tickets" model="res.groups">
+            <field name="name">تذاكر الطيران</field>
+        </record>
+        <record id="group_insurance" model="res.groups">
+            <field name="name">التامين</field>
+        </record>
+        <record id="group_children_travel" model="res.groups">
+            <field name="name">سياحه الاطفال</field>
+        </record>
+        <record id="res_partner_form_child_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[1]" position="inside">
+                    <field invisible="1" name="is_child"/>
+                    <field invisible="1" name="is_insurance"/>
+                    <field invisible="1" name="is_flight"/>
+                    <field invisible="1" name="is_external"/>
+                    <field invisible="related_flight == True or is_external == False" name="show_in_flights" readonly="related_flight == True"/>
+                    <field invisible="is_external == False" name="related_flight" readonly="True"/>
+                    <field invisible="is_child == False" name="coordinator"/>
+                    <field invisible="is_child == False" name="mobile2_child"/>
+                    <field invisible="is_child == False" name="region"/>
+                    <field invisible="is_insurance == False" name="mobile2_insurance"/>
+                    <field invisible="is_insurance == False" name="country_insurance"/>
+                    <field invisible="is_insurance == False" name="q_number_insurance"/>
+                    <field invisible="is_insurance == False" name="q_code_insurance"/>
+                    <field invisible="is_flight == False" name="mobile_fly"/>
+                    <field invisible="is_flight == False" name="reservation_date_fly"/>
+                    <field invisible="is_flight == False" name="travel_date_fly"/>
+                    <field invisible="is_flight == False" name="transient_time_fly"/>
+                    <field invisible="is_flight == False" name="leaving_time_fly"/>
+                    <field invisible="is_flight == False" name="transient_period_fly"/>
+                    <field invisible="is_flight == False" name="reference_number_fly"/>
+                    <field invisible="is_flight == False" name="ticket_number_fly"/>
+                    <field invisible="is_flight == False" name="visa_name_fly"/>
+                    <field invisible="is_flight == False" name="ticket_price_fly"/>
+                    <field invisible="is_flight == False" name="commission_line_fly"/>
+                    <field invisible="is_flight == False" name="flight_type_fly"/>
+                </xpath>
+                <xpath expr="//group/group[2]" position="inside">
+                    <field invisible="is_child == False" name="program_price"/>
+                    <field invisible="is_child == False" name="sale_price"/>
+                    <field invisible="is_child == False" name="profit"/>
+                    <field invisible="is_insurance == False" name="traveling_date_insurance"/>
+                    <field invisible="is_insurance == False" name="arrival_date_insurance"/>
+                    <field invisible="is_insurance == False" name="number_of_days_insurance"/>
+                    <field invisible="is_insurance == False" name="responsible_employee_insurance"/>
+                    <field invisible="is_flight == False" name="sale_price_fly"/>
+                    <field invisible="is_flight == False" name="profit_fly"/>
+                    <field invisible="is_flight == False" name="walking_line_fly"/>
+                    <field invisible="is_flight == False" name="country_id_fly"/>
+                    <field invisible="is_flight == False" name="transient_visa_fly"/>
+                    <field invisible="is_flight == False" name="state_fly"/>
+                    <field invisible="is_flight == False" name="weight_fly"/>
+                    <field invisible="is_flight == False" name="back_weight_fly"/>
+                    <field invisible="is_flight == False" name="going_degree"/>
+                    <field invisible="is_flight == False" name="back_degree"/>
+                    <field invisible="is_flight == False" name="time_difference_fly2"/>
+                    <field invisible="is_flight == False" name="trip_time"/>
+                    <field invisible="1" name="degree_fly"/>
+                    <field invisible="1" name="time_difference_fly"/>
+                </xpath></field>
+        </record>
+        <record id="view_project_task_child_form" model="ir.ui.view">
+            <field name="name">project.task</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_ids']" position="after">
+                    <field invisible="1" name="child_group_id"/>
+                </xpath></field>
+        </record>
+        <record id="res_partner_child_group_form_view" model="ir.ui.view">
+            <field name="name">child.travel.group</field>
+            <field name="model">child.travel.group</field>
+            <field name="arch" type="xml">
+                <form string="الرحلات">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-archive" name="toggle_active" type="object">
+                                <field name="active" options='{"terminology": "archive"}' widget="boolean_button"/>
+                            </button>
+                            <button class="oe_stat_button" context="{'default_child_group_id': active_id}" icon="fa-tasks" name="get_related_tasks" type="object">
+                                <field name="task_count" string="Tasks" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-pencil-square-o" id="invoice_button2" name="open_partner_history2" type="object">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="total_invoiced" widget="monetary"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Invoiced
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <field class="oe_avatar" name="image" options='{"preview_image": "image_medium", "size": [90, 90]}' widget="image"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field default_focus="1" name="name" placeholder="Name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="coordinator"/>
+                                <field name="address"/>
+                                <field name="mobile1"/>
+                                <field name="mobile2"/>
+                            </group>
+                            <group>
+                                <field name="region"/>
+                                <field name="program_price"/>
+                                <field name="sale_price"/>
+                                <field name="profit"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="العملاء">
+                                <field context="{'default_is_child':'True'}" name="child_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                        <field invisible="1" name="partner_group_id"/>
+                                    </tree></field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form></field>
+        </record>
+        <record id="res_partner_child_group_tree_view" model="ir.ui.view">
+            <field name="name">child.travel.group</field>
+            <field name="model">child.travel.group</field>
+            <field name="arch" type="xml">
+                <tree string="رحلات الاطفال">
+                    <field name="name"/>
+                    <field name="coordinator"/>
+                    <field name="mobile2"/>
+                    <field name="region"/>
+                </tree></field>
+        </record>
+        <record id="res_partner_child_group_action" model="ir.actions.act_window">
+            <field name="name">رحلات الاطفال</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">child.travel.group</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="res_partner_child_action" model="ir.actions.act_window">
+            <field name="name">الاطفال</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="context">{'default_is_child':'True'}</field>
+            <field name="domain">[('is_child','=',True)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <record id="res_partner_flight_action" model="ir.actions.act_window">
+            <field name="name">تذاكر الطيران</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="context">{'default_is_flight':'True'}</field>
+            <field name="domain">[('is_flight','=',True)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <record id="res_partner_insurance_action" model="ir.actions.act_window">
+            <field name="name">التامين</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="context">{'default_is_insurance':'True'}</field>
+            <field name="domain">[('is_insurance','=',True)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <menuitem groups="pixagrama_flight.group_flight_tickets" id="res_partner_flight_root_menu" name="تذاكر الطيران"
+                  parent="pixagrama_contacts.res_partner_root_menu" action="res_partner_flight_action" sequence="5"/>
+
+        <menuitem groups="pixagrama_flight.group_insurance" id="res_partner_insurance_root_menu" name="التامين"
+                  parent="pixagrama_contacts.res_partner_root_menu" action="res_partner_insurance_action" sequence="6"/>
+
+        <menuitem groups="pixagrama_flight.group_children_travel" id="res_partner_travel_root_menu" name="سياحه الاطفال" parent="pixagrama_contacts.res_partner_root_menu" sequence="4"/>
+        <menuitem action="res_partner_child_action" id="res_partner_child_flightt_menu" name="فرد" parent="res_partner_travel_root_menu" sequence="2"/>
+        <menuitem action="res_partner_child_group_action" id="res_partner_travel_child_menu" name="مجموعه" parent="res_partner_travel_root_menu" sequence="4"/>
+    </data>
+</odoo>
