@@ -23,8 +23,8 @@
                     <field invisible="1" name="is_insurance"/>
                     <field invisible="1" name="is_flight"/>
                     <field invisible="1" name="is_external"/>
-                    <field invisible="related_flight == True or is_external == False" name="show_in_flights" readonly="related_flight == True"/>
-                    <field invisible="is_external == False" name="related_flight" readonly="True"/>
+                    <!--<field invisible="related_flight == True or is_external == False" name="show_in_flights" readonly="related_flight == True"/>
+                    <field invisible="is_external == False" name="related_flight" readonly="True"/>-->
                     <field invisible="is_child == False" name="coordinator"/>
                     <field invisible="is_child == False" name="mobile2_child"/>
                     <field invisible="is_child == False" name="region"/>
@@ -32,18 +32,21 @@
                     <field invisible="is_insurance == False" name="country_insurance"/>
                     <field invisible="is_insurance == False" name="q_number_insurance"/>
                     <field invisible="is_insurance == False" name="q_code_insurance"/>
-                    <field invisible="is_flight == False" name="mobile_fly"/>
-                    <field invisible="is_flight == False" name="reservation_date_fly"/>
-                    <field invisible="is_flight == False" name="travel_date_fly"/>
-                    <field invisible="is_flight == False" name="transient_time_fly"/>
-                    <field invisible="is_flight == False" name="leaving_time_fly"/>
-                    <field invisible="is_flight == False" name="transient_period_fly"/>
-                    <field invisible="is_flight == False" name="reference_number_fly"/>
-                    <field invisible="is_flight == False" name="ticket_number_fly"/>
-                    <field invisible="is_flight == False" name="visa_name_fly"/>
-                    <field invisible="is_flight == False" name="ticket_price_fly"/>
-                    <field invisible="is_flight == False" name="commission_line_fly"/>
-                    <field invisible="is_flight == False" name="flight_type_fly"/>
+
+                    <field invisible="is_flight == False" name="mobile_fly" string ="how you know us"/>
+                    <field invisible="is_flight == False" name="reservation_date_fly" string ="ticket date"/>
+
+                    <field invisible="is_flight == False" name="transient_visa_fly" string ="first name"/>
+                    <field invisible="is_flight == False" name="reference_number_fly" string ="sure name"/>
+                    <field invisible="is_flight == False" name="ticket_number_fly" string ="phone"/>
+                    <field invisible="is_flight == False" name="visa_name_fly" string ="email"/>
+                    <field invisible="is_flight == False" name="weight_fly" string ="whatsApp"/>
+                    <field invisible="is_flight == False" name="back_weight_fly" string ="booking reg"/>
+                    <field invisible="is_flight == False" name="flight_type_fly" string ="res number"/>
+
+                    <field invisible="is_flight == False" name="travel_date_fly" string ="booking date"/>
+                    <field invisible="is_flight == False" name="transient_time_fly" string ="departure date"/>
+                    <field invisible="is_flight == False" name="leaving_time_fly" string ="arival date"/>
                 </xpath>
                 <xpath expr="//group/group[2]" position="inside">
                     <field invisible="is_child == False" name="program_price"/>
@@ -53,20 +56,20 @@
                     <field invisible="is_insurance == False" name="arrival_date_insurance"/>
                     <field invisible="is_insurance == False" name="number_of_days_insurance"/>
                     <field invisible="is_insurance == False" name="responsible_employee_insurance"/>
-                    <field invisible="is_flight == False" name="sale_price_fly"/>
-                    <field invisible="is_flight == False" name="profit_fly"/>
-                    <field invisible="is_flight == False" name="walking_line_fly"/>
-                    <field invisible="is_flight == False" name="country_id_fly"/>
-                    <field invisible="is_flight == False" name="transient_visa_fly"/>
-                    <field invisible="is_flight == False" name="state_fly"/>
-                    <field invisible="is_flight == False" name="weight_fly"/>
-                    <field invisible="is_flight == False" name="back_weight_fly"/>
-                    <field invisible="is_flight == False" name="going_degree"/>
-                    <field invisible="is_flight == False" name="back_degree"/>
-                    <field invisible="is_flight == False" name="time_difference_fly2"/>
-                    <field invisible="is_flight == False" name="trip_time"/>
-                    <field invisible="1" name="degree_fly"/>
-                    <field invisible="1" name="time_difference_fly"/>
+
+                    <field invisible="is_flight == False" name="country_id_fly" string ="destination"/>
+                    <field invisible="is_flight == False" name="walking_line_fly" string ="airline"/>
+                    <field invisible="is_flight == False" name="program_price" string ="rating price"/>
+                   <field invisible="is_flight == False" name="commission_line_fly" string ="discount"/>
+                    <field invisible="is_flight == False" name="sale_price_fly" string ="sale price"/>
+                    <field invisible="is_flight == False" name="profit_fly" string ="profit"/>
+
+
+                    
+
+
+
+
                 </xpath></field>
         </record>
         <record id="view_project_task_child_form" model="ir.ui.view">
