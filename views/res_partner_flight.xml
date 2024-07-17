@@ -41,7 +41,7 @@
                     <field invisible="is_flight == False" name="ticket_number_fly" string ="phone"/>
                     <field invisible="is_flight == False" name="visa_name_fly" string ="email"/>
                     <field invisible="is_flight == False" name="weight_fly" string ="whatsApp"/>
-                    <field invisible="is_flight == False" name="back_weight_fly" string ="booking reg"/>
+                    <field invisible="is_flight == False" name="back_weight_fly" string ="booking reference"/>
                     <field invisible="is_flight == False" name="flight_type_fly" string ="res number"/>
 
                     <field invisible="is_flight == False" name="travel_date_fly" string ="booking date"/>
